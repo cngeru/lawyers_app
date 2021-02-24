@@ -16,136 +16,133 @@ class Lawyer extends StatelessWidget {
         elevation: 0,
         iconTheme: IconTheme.of(context).copyWith(color: Colors.black),
       ),
-      extendBodyBehindAppBar: true,
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                // Top
-                Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Positioned(
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Top
+              Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                    width: MediaQuery.of(context).size.width,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(40.0),
+                      ),
+                      child: Image(
+                        fit: BoxFit.cover,
                         height: MediaQuery.of(context).size.height * 0.4,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(40.0),
-                          ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(40.0),
-                          ),
-                          child: Image.network(
-                            lawyer.avatar,
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ),
+                        image: NetworkImage(lawyer.avatar),
                       ),
                     ),
-                    Positioned(
-                      bottom: 0,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12.0),
-                          ),
-                          color: Colors.brown[800].withOpacity(0.6),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12.0),
                         ),
+                        color: Colors.brown[300].withOpacity(0.9),
                       ),
                     ),
-                    Positioned(
-                      bottom: 8,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12.0),
-                          ),
-                          color: Colors.brown[800].withOpacity(0.8),
+                  ),
+                  Positioned(
+                    bottom: 8,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12.0),
                         ),
+                        color: Colors.brown[400].withOpacity(0.9),
                       ),
                     ),
-                    Positioned(
-                      bottom: 15,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: _lawyerInfoContainer(context),
+                  ),
+                  Positioned(
+                    bottom: 15,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20.0),
+                        ),
+                        color: Colors.brown[800],
                       ),
+                      child: _lawyerInfoContainer(context),
                     ),
-                  ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              //Stats
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  _statsColumn(context, "Cases won", lawyer.casesWon, Colors.orange),
+                  _statsColumn(context, "Experience", lawyer.experience, Colors.blue),
+                  _statsColumn(context, "Endorsement", lawyer.endorsement, Colors.green),
+                ],
+              ),
+              SizedBox(height: 20),
+              //About
+              Container(
+                padding: const EdgeInsets.all(12),
+                margin: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12.0),
+                  ),
+                  color: Colors.white,
                 ),
-                SizedBox(height: 20),
-                //Stats
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
+                child: Column(
                   children: [
-                    _statsColumn(context, "Cases won", lawyer.casesWon, Colors.orange),
-                    _statsColumn(context, "Experience", lawyer.experience, Colors.blue),
-                    _statsColumn(context, "Endorsement", lawyer.endorsement, Colors.green),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "About Lawyer",
+                          style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.black, fontWeight: FontWeight.w800),
+                        ),
+                        lawyer.available
+                            ? Chip(
+                                label: Text(
+                                  "Available",
+                                  style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.greenAccent, fontWeight: FontWeight.w800),
+                                ),
+                                backgroundColor: Colors.greenAccent.withOpacity(0.09),
+                              )
+                            : Chip(
+                                label: Text(
+                                  "Unavailable",
+                                  style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.grey),
+                                ),
+                              ),
+                      ],
+                    ),
+                    Text(
+                      lawyer.about,
+                      style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.grey[500]),
+                    ),
                   ],
                 ),
-                SizedBox(height: 20),
-                //About
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  margin: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12.0),
-                    ),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "About Lawyer",
-                            style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.black, fontWeight: FontWeight.w800),
-                          ),
-                          lawyer.available
-                              ? Chip(
-                                  label: Text(
-                                    "Available",
-                                    style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.greenAccent, fontWeight: FontWeight.w800),
-                                  ),
-                                  backgroundColor: Colors.greenAccent.withOpacity(0.09),
-                                )
-                              : Chip(
-                                  label: Text(
-                                    "Unavailable",
-                                    style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.grey),
-                                  ),
-                                ),
-                        ],
-                      ),
-                      Text(
-                        lawyer.about,
-                        style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.grey[500]),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10),
-                // Location
-                _mapContainer(context),
-              ],
-            ),
+              ),
+              SizedBox(height: 10),
+              // Location
+              _mapContainer(context),
+            ],
           ),
         ),
       ),
       bottomSheet: Container(
-        // color: Colors.red,
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.fromLTRB(15, 15, 15, 25),
         child: Container(
           width: double.infinity,
           child: ElevatedButton(
@@ -211,59 +208,50 @@ class Lawyer extends StatelessWidget {
     );
   }
 
-  Container _lawyerInfoContainer(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(12.0),
+  Column _lawyerInfoContainer(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          lawyer.name,
+          style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.white, fontWeight: FontWeight.w800),
         ),
-        color: Colors.brown[800],
-      ),
-      child: Column(
-        children: [
-          Text(
-            lawyer.name,
-            style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.white, fontWeight: FontWeight.w800),
-          ),
-          SizedBox(height: 8),
-          Text(
-            "${lawyer.category} Lawyer",
-            style: Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.white),
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    lawyer.rating.toString(),
-                    style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.white),
-                  ),
-                  SizedBox(width: 5),
-                  Icon(
-                    Icons.star_half_outlined,
-                    color: Colors.yellow[600],
-                  ),
-                ],
-              ),
-              SizedBox(width: 5),
-              Container(
-                child: Icon(
-                  Icons.circle,
-                  color: Colors.white,
-                  size: 6,
+        SizedBox(height: 8),
+        Text(
+          "${lawyer.category} Lawyer",
+          style: Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.white),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Text(
+                  lawyer.rating.toString(),
+                  style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.white),
                 ),
+                SizedBox(width: 5),
+                Icon(
+                  Icons.star_half_outlined,
+                  color: Colors.yellow[600],
+                ),
+              ],
+            ),
+            SizedBox(width: 5),
+            Container(
+              child: Icon(
+                Icons.circle,
+                color: Colors.white,
+                size: 6,
               ),
-              SizedBox(width: 5),
-              Text(
-                lawyer.firm,
-                style: Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.brown[200]),
-              ),
-            ],
-          ),
-        ],
-      ),
+            ),
+            SizedBox(width: 5),
+            Text(
+              lawyer.firm,
+              style: Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.brown[200]),
+            ),
+          ],
+        ),
+      ],
     );
   }
 

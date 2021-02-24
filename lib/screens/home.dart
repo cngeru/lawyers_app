@@ -34,26 +34,24 @@ class Home extends HookWidget {
       appBar: _buildAppBar(),
       body: SafeArea(
         child: Center(
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                _topContainer(context, selectedCategory),
-                Expanded(
-                  child: Container(
+          child: SingleChildScrollView(
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  _topContainer(context, selectedCategory),
+                  Container(
                     width: double.infinity,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: List.generate(
-                          topLawyers.length,
-                          (index) => _buildLawyerCard(context, index),
-                        ),
+                    child: Column(
+                      children: List.generate(
+                        topLawyers.length,
+                        (index) => _buildLawyerCard(context, index),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

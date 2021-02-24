@@ -30,7 +30,7 @@ class LawyerModel {
 final List<LawyerModel> topLawyers = [
   LawyerModel(
     lawyerID: 1,
-    avatar: "https://i.pravatar.cc/150?img=1",
+    avatar: "https://i.pravatar.cc/400?img=1",
     name: "Annette Black",
     category: "Criminal",
     firm: "East Dakota",
@@ -44,7 +44,7 @@ final List<LawyerModel> topLawyers = [
   ),
   LawyerModel(
     lawyerID: 2,
-    avatar: "https://i.pravatar.cc/150?img=3",
+    avatar: "https://i.pravatar.cc/400?img=3",
     name: "Ralph Edwards",
     category: "Intellectual",
     firm: "Ayale Law Firm",
@@ -58,7 +58,7 @@ final List<LawyerModel> topLawyers = [
   ),
   LawyerModel(
     lawyerID: 3,
-    avatar: "https://i.pravatar.cc/150?img=7",
+    avatar: "https://i.pravatar.cc/400?img=7",
     name: "Brooklyn Simmons",
     category: "Child Protection",
     firm: "Barney Firm",
@@ -72,7 +72,7 @@ final List<LawyerModel> topLawyers = [
   ),
   LawyerModel(
     lawyerID: 4,
-    avatar: "https://i.pravatar.cc/150?img=8",
+    avatar: "https://i.pravatar.cc/400?img=8",
     name: "John Smith",
     category: "Criminal",
     firm: "Barney Firm",
