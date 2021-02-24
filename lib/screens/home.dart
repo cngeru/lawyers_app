@@ -89,14 +89,13 @@ class Home extends HookWidget {
                 style: BorderStyle.none,
               ),
             ),
-            hintText: 'Lot number',
+            hintText: "Search Lawyer",
             filled: true,
             fillColor: Colors.white,
             prefixIcon: new Icon(
               Icons.search,
               size: 32,
             ),
-            labelText: "Search Lawyer",
             suffixIcon: Container(
               padding: const EdgeInsets.all(4),
               margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
